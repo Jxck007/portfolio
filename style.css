@@ -1,18 +1,16 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  
-  /* BODY */
+
   body {
-    background-color: #000;
-    color: #fff;
+    background: linear-gradient(135deg, #fff5f7 0%, #f0e8ff 100%);
+    color: #2c2240;
     font-family: 'Orbitron', sans-serif;
+    min-height: 100vh;
   }
   
-  /* CONTAINER */
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -21,16 +19,16 @@
   
   /* HEADER */
   header {
-    background: #000;
+    background: linear-gradient(180deg, #ffe4ec 0%, #f3e5f5 100%);
     text-align: center;
     padding: 50px 0;
-    border-bottom: 2px solid #00ffee;
-    box-shadow: 0 0 30px #00ffee;
+    border-bottom: 3px solid #ff6b9d;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
   }
   
   header h1 {
-    color: #00ffee;
-    text-shadow: 0 0 10px #00ffee, 0 0 20px #00ffee;
+    color: #e91e63;
+    text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.1);
     font-size: 3rem;
   }
   
@@ -38,8 +36,8 @@
     display: block;
     margin: 10px auto;
     width: 40ch;
-    color: #ff00ff;
-    border-right: 3px solid #ff00ff;
+    color: #c2185b;
+    border-right: 3px solid #c2185b;
     white-space: nowrap;
     overflow: hidden;
     animation: typing 4s steps(40) forwards, blink 0.7s step-end infinite;
@@ -66,19 +64,19 @@
   }
   
   nav ul li a {
-    color: #00ffee;
+    color: #ff6b9d;
     text-decoration: none;
-    border: 1px solid #00ffee;
+    border: 2px solid #ff6b9d;
     padding: 8px 15px;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: transparent;
     transition: 0.3s;
   }
   
   nav ul li a:hover {
-    background-color: #00ffee;
-    color: black;
-    box-shadow: 0 0 10px #00ffee, 0 0 20px #00ffee;
+    background-color: #ff6b9d;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
   }
   
   /* ABOUT */
@@ -87,8 +85,8 @@
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid #00ffee;
-    box-shadow: 0 0 15px #00ffee;
+    border: 4px solid #c9a9d4;
+    box-shadow: 0 6px 20px rgba(201, 169, 212, 0.3);
     display: block;
     margin: 0 auto 20px;
   }
@@ -96,8 +94,8 @@
   section h2 {
     text-align: center;
     margin-bottom: 30px;
-    color: #39ff14;
-    text-shadow: 0 0 10px #39ff14;
+    color: #c2185b;
+    text-shadow: 1px 1px 2px rgba(194, 24, 91, 0.1);
   }
   
   .skills-list {
@@ -108,15 +106,17 @@
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
-    border: 2px solid #00ffee;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #00ffee;
+    border: 2px solid #ff6b9d;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgba(255, 107, 157, 0.15);
     transition: 0.3s;
   }
   
   .skills-list li:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px #00ffee;
+    background: linear-gradient(135deg, #ffe4ec 0%, #f3e5f5 100%);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.25);
   }
   
   /* PROJECTS */
@@ -124,18 +124,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #111;
+    background: linear-gradient(135deg, #fff9fb 0%, #f3e5f5 100%);
     padding: 20px;
     margin-bottom: 20px;
-    border: 2px solid #00ffee;
+    border: 2px solid #ff6b9d;
     border-radius: 15px;
-    box-shadow: 0 0 15px #00ffee;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.15);
     transition: 0.3s;
   }
   
   .project:hover {
     transform: scale(1.02) translateY(-5px);
-    box-shadow: 0 0 30px #00ffee, 0 0 60px #00ffee;
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.25);
+    border-color: #c9a9d4;
   }
   
   .project-info {
@@ -157,6 +158,8 @@
   .project-img {
     width: 220px;
     height: 150px;
+    border: 2px solid #c9a9d4;
+    box-shadow: 0 4px 12px rgba(201, 169, 212, 0.2);
     object-fit: cover;
     border-radius: 10px;
     margin-left: 20px;
@@ -172,22 +175,22 @@
   }
   
   .contact-box a {
-    color: #00ffee;
+    color: #ff6b9d;
     text-decoration: none;
-    border-bottom: 1px dotted #00ffee;
+    border-bottom: 2px solid #ff6b9d;
   }
   
   .contact-box a:hover {
-    color: #39ff14;
-    border-color: #39ff14;
+    color: #c2185b;
+    border-color: #c2185b;
   }
   
   /* FOOTER */
   footer {
     text-align: center;
     padding: 20px;
-    background-color: #000;
-    border-top: 2px solid #00ffee;
-    box-shadow: 0 0 20px #00ffee;
+    background: linear-gradient(180deg, #f3e5f5 0%, #ffe4ec 100%);
+    border-top: 3px solid #ff6b9d;
+    box-shadow: 0 -4px 15px rgba(255, 107, 157, 0.2);
   }
   
