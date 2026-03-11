@@ -2,134 +2,740 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jegadeesh Nandakumar | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jegadeesh (Jack) Nandakumar | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #080810;
+      --bg2:     #0f0f1a;
+      --bg3:     #14141f;
+      --card:    #18182a;
+      --card2:   #1e1e30;
+      --border:  #28283c;
+      --border2: #34345a;
+      --accent:  #7c6af7;
+      --accent2: #4fc3f7;
+      --accent3: #f06292;
+      --green:   #4ade80;
+      --yellow:  #fbbf24;
+      --red:     #f87171;
+      --text:    #e8e8f2;
+      --muted:   #7878a0;
+      --muted2:  #9898b8;
+    }
 
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:200;
+      display: flex; align-items:center; justify-content:space-between;
+      padding: 1rem 3rem;
+      background: rgba(8,8,16,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family:'JetBrains Mono',monospace; font-size:1rem; font-weight:700; color:var(--accent); letter-spacing:.05em; }
+    .nav-logo span { color:var(--text); }
+    .nav-links { display:flex; gap:1.8rem; list-style:none; }
+    .nav-links a {
+      font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--muted);
+      text-decoration:none; letter-spacing:.1em; text-transform:uppercase; transition:color .2s;
+      position:relative;
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:-4px; left:0; right:0;
+      height:1px; background:var(--accent);
+      transform:scaleX(0); transform-origin:left; transition:transform .2s;
+    }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-links a:hover::after { transform:scaleX(1); }
+
+    /* HERO */
+    #hero {
+      min-height:100vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:7rem 2rem 4rem; position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0; z-index:0;
+      background-image:
+        linear-gradient(rgba(124,106,247,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,106,247,.05) 1px, transparent 1px);
+      background-size:56px 56px;
+      mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-glow1 {
+      position:absolute; top:10%; left:30%; width:500px; height:500px; border-radius:50%;
+      background:radial-gradient(circle,rgba(124,106,247,.15) 0%,transparent 65%);
+      pointer-events:none; animation:gFloat 8s ease-in-out infinite;
+    }
+    .hero-glow2 {
+      position:absolute; bottom:15%; right:25%; width:380px; height:380px; border-radius:50%;
+      background:radial-gradient(circle,rgba(79,195,247,.1) 0%,transparent 65%);
+      pointer-events:none; animation:gFloat 10s ease-in-out infinite reverse;
+    }
+    @keyframes gFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+    .hero-content { position:relative; z-index:1; max-width:780px; text-align:center; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:.6rem;
+      background:rgba(124,106,247,.1); border:1px solid rgba(124,106,247,.28);
+      border-radius:100px; padding:.4rem 1.2rem;
+      font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--accent);
+      margin-bottom:1.6rem; letter-spacing:.05em;
+      animation:fadeUp .6s ease both;
+    }
+    .status-dot { width:7px; height:7px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.85)} }
+
+    .hero-name {
+      font-size:clamp(3rem,7vw,5.5rem); font-weight:800; line-height:1.04;
+      letter-spacing:-.025em; margin-bottom:.4rem;
+      animation:fadeUp .6s .1s ease both;
+    }
+    .hero-name .hi { color:var(--muted); font-weight:400; }
+    .hero-name .accent { color:var(--accent); }
+    .hero-role {
+      font-family:'JetBrains Mono',monospace; font-size:clamp(.9rem,1.8vw,1.1rem);
+      color:var(--accent2); margin-bottom:1.4rem; letter-spacing:.04em;
+      animation:fadeUp .6s .2s ease both;
+    }
+    .hero-bio {
+      font-size:1.02rem; color:var(--muted2); line-height:1.75;
+      max-width:580px; margin:0 auto 2.5rem;
+      animation:fadeUp .6s .3s ease both;
+    }
+    .hero-ctas { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeUp .6s .4s ease both; }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.8rem;
+      border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:.82rem; font-weight:600;
+      text-decoration:none; transition:all .22s; cursor:pointer; border:none; letter-spacing:.02em;
+    }
+    .btn-primary { background:var(--accent); color:#fff; box-shadow:0 0 28px rgba(124,106,247,.4); }
+    .btn-primary:hover { background:#9d8eff; transform:translateY(-2px); box-shadow:0 0 36px rgba(124,106,247,.55); }
+    .btn-outline { background:transparent; color:var(--text); border:1px solid var(--border2); }
+    .btn-outline:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); background:rgba(124,106,247,.06); }
+    .btn-ghost { background:transparent; color:var(--muted2); border:1px solid var(--border); font-size:.75rem; padding:.5rem 1rem; }
+    .btn-ghost:hover { color:var(--accent2); border-color:var(--accent2); transform:translateY(-1px); }
+
+    .scroll-indicator {
+      position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:.5rem;
+      font-family:'JetBrains Mono',monospace; font-size:.65rem;
+      color:var(--muted); letter-spacing:.2em; text-transform:uppercase;
+      animation:fadeUp .6s .8s ease both;
+    }
+    .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,var(--accent),transparent); animation:scrollAnim 1.6s ease-in-out infinite; }
+    @keyframes scrollAnim {
+      0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top}
+      51%{transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom}
+    }
+
+    /* SECTIONS */
+    .section-wrap { max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .section-label { font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:.5rem; }
+    .section-title { font-size:clamp(1.8rem,3vw,2.4rem); font-weight:800; margin-bottom:.4rem; letter-spacing:-.01em; }
+    .section-sub { color:var(--muted2); font-size:.95rem; margin-bottom:2.8rem; }
+    .divider { width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); }
+
+    /* ABOUT */
+    .about-bio { color:var(--muted2); line-height:1.8; font-size:.97rem; max-width:720px; margin-bottom:2rem; }
+    .stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+    .stat-card {
+      background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.4rem; text-align:center;
+      transition:border-color .2s,transform .2s;
+    }
+    .stat-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+    .stat-num { font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:800; color:var(--accent); }
+    .stat-lbl { font-size:.77rem; color:var(--muted); margin-top:.35rem; }
+
+    /* GITHUB */
+    .gh-top { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.2rem; }
+    .gh-card {
+      background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.4rem; text-align:center;
+      transition:border-color .2s,transform .2s;
+    }
+    .gh-card:hover { border-color:var(--accent2); transform:translateY(-3px); }
+    .gh-num { font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:800; color:var(--accent2); }
+    .gh-lbl { font-size:.77rem; color:var(--muted); margin-top:.35rem; }
+    .gh-bottom { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+
+    .panel { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.5rem; }
+    .panel-title { font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:1.2rem; }
+    .lang-row { display:flex; align-items:center; gap:.8rem; margin-bottom:.85rem; }
+    .lang-name { font-family:'JetBrains Mono',monospace; font-size:.76rem; width:90px; flex-shrink:0; }
+    .lang-track { flex:1; height:5px; background:var(--border); border-radius:3px; overflow:hidden; }
+    .lang-fill { height:100%; border-radius:3px; transition:width 1.2s cubic-bezier(.4,0,.2,1); }
+    .lang-pct { font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--muted); width:34px; text-align:right; }
+
+    /* LEETCODE */
+    .lc-top { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.2rem; }
+    .lc-card {
+      background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.4rem; text-align:center;
+      transition:transform .2s;
+    }
+    .lc-card:hover { transform:translateY(-3px); }
+    .lc-easy { border-color:rgba(74,222,128,.25); }
+    .lc-med  { border-color:rgba(251,191,36,.25); }
+    .lc-hard { border-color:rgba(248,113,113,.25); }
+    .lc-all  { border-color:rgba(124,106,247,.25); }
+    .lc-icon { font-size:1.4rem; margin-bottom:.5rem; }
+    .lc-num  { font-family:'JetBrains Mono',monospace; font-size:1.9rem; font-weight:800; }
+    .lc-easy .lc-num { color:var(--green); }
+    .lc-med  .lc-num { color:var(--yellow); }
+    .lc-hard .lc-num { color:var(--red); }
+    .lc-all  .lc-num { color:var(--accent); }
+    .lc-lbl  { font-size:.77rem; color:var(--muted); margin-top:.3rem; }
+    .lc-badges { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+    .ring-label { font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--muted); text-align:center; }
+
+    /* SKILLS */
+    .skills-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
+    .skill-group { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.4rem; transition:border-color .2s; }
+    .skill-group:hover { border-color:var(--border2); }
+    .sg-title { font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+    .tag-wrap { display:flex; flex-wrap:wrap; gap:.45rem; }
+    .tag {
+      font-family:'JetBrains Mono',monospace; font-size:.75rem; padding:.3rem .8rem;
+      border-radius:6px; background:rgba(124,106,247,.08); border:1px solid rgba(124,106,247,.18);
+      color:var(--text); transition:all .2s; cursor:default;
+    }
+    .tag:hover { background:rgba(124,106,247,.22); border-color:var(--accent); color:var(--accent); }
+
+    /* PROJECTS */
+    .proj-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem; }
+    .proj-card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden;
+      display:flex; flex-direction:column;
+      transition:border-color .25s,transform .25s,box-shadow .25s;
+    }
+    .proj-card:hover { border-color:var(--accent); transform:translateY(-5px); box-shadow:0 12px 40px rgba(124,106,247,.18); }
+    .proj-thumb { height:165px; overflow:hidden; background:var(--bg3); position:relative; flex-shrink:0; }
+    .proj-thumb img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+    .proj-card:hover .proj-thumb img { transform:scale(1.07); }
+    .proj-thumb-fallback { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:2.8rem; background:var(--bg3); }
+    .proj-body { padding:1.25rem; flex:1; display:flex; flex-direction:column; }
+    .proj-name { font-size:1.05rem; font-weight:700; margin-bottom:.45rem; }
+    .proj-desc { font-size:.86rem; color:var(--muted2); line-height:1.65; flex:1; }
+    .proj-footer { margin-top:1rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.5rem; }
+    .proj-tags { display:flex; flex-wrap:wrap; gap:.35rem; }
+    .proj-tag { font-family:'JetBrains Mono',monospace; font-size:.68rem; padding:.18rem .55rem; border-radius:4px; background:rgba(79,195,247,.08); border:1px solid rgba(79,195,247,.18); color:var(--accent2); }
+    .proj-links { display:flex; gap:.5rem; }
+    .proj-card.wide { grid-column:span 2; flex-direction:row; }
+    .proj-card.wide .proj-thumb { width:260px; height:auto; flex-shrink:0; }
+    .proj-card.wide .proj-thumb img { height:100%; }
+
+    /* UPDATES */
+    .updates-list { display:flex; flex-direction:column; gap:.9rem; }
+    .update-item {
+      display:flex; gap:1rem; align-items:flex-start;
+      background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.2rem;
+      transition:border-color .2s,transform .2s;
+    }
+    .update-item:hover { border-color:var(--accent3); transform:translateX(4px); }
+    .upd-dot { width:9px; height:9px; border-radius:50%; background:var(--accent3); margin-top:5px; flex-shrink:0; }
+    .upd-date { font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--muted); margin-bottom:.3rem; }
+    .upd-text { font-size:.9rem; line-height:1.65; }
+
+    /* CONTACT */
+    .contact-box {
+      background:var(--card); border:1px solid var(--border); border-radius:18px; padding:3rem; text-align:center;
+      position:relative; overflow:hidden;
+    }
+    .contact-box::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    }
+    .contact-name { font-size:1.5rem; font-weight:800; margin-bottom:.4rem; }
+    .contact-tagline { font-family:'JetBrains Mono',monospace; font-size:.8rem; color:var(--accent); letter-spacing:.1em; }
+    .contact-links { display:flex; justify-content:center; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+    .contact-link {
+      display:inline-flex; align-items:center; gap:.5rem;
+      font-family:'JetBrains Mono',monospace; font-size:.8rem; color:var(--muted2);
+      text-decoration:none; padding:.6rem 1.3rem; border:1px solid var(--border); border-radius:8px; transition:all .2s;
+    }
+    .contact-link:hover { color:var(--accent); border-color:var(--accent); background:rgba(124,106,247,.07); }
+
+    /* FOOTER */
+    footer { text-align:center; padding:2rem; border-top:1px solid var(--border); font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--muted); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .55s ease,transform .55s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    .loading { color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:.78rem; }
+    .dots::after { content:'...'; animation:dotAnim 1.2s steps(3,end) infinite; }
+    @keyframes dotAnim { 0%,20%{content:'.'} 40%,60%{content:'..'} 80%,100%{content:'...'} }
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      nav { padding:1rem 1.2rem; }
+      .nav-links { gap:1rem; }
+      .nav-links a { font-size:.65rem; }
+      .section-wrap { padding:4rem 1.2rem; }
+      .stat-row,.lc-top,.lc-badges { grid-template-columns:repeat(2,1fr); }
+      .gh-top { grid-template-columns:repeat(2,1fr); }
+      .gh-bottom,.skills-grid { grid-template-columns:1fr; }
+      .proj-grid { grid-template-columns:1fr; }
+      .proj-card.wide { flex-direction:column; grid-column:auto; }
+      .proj-card.wide .proj-thumb { width:100%; height:160px; }
+    }
+  </style>
+</head>
 <body>
 
-  <header>
-    <div class="container">
-      <h1>Jack</h1>
-      <p class="typing">Backend Developer focused on Flask and Databases</p>
-      <p class="typing">Passionate about backend development, APIs, and databases. Currently focused on Flask-based systems and modern deployment workflows.</p>
-      <nav>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">jack<span>;</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#github">GitHub</a></li>
+    <li><a href="#leetcode">LeetCode</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#updates">Updates</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <section id="about">
-    <div class="container">
-      <img src="images\pixelcut-export-3-3.jpg" alt="My Profile" class="profile-img">
-      <h2>About Me</h2>
-      <p>Hi, I’m Jegadeesh Nandakumar — I’m a Computer Science Engineering student with a strong interest in backend development. I enjoy building systems that handle data, authentication, and APIs using Python and Flask.
-      Most of my work focuses on database-driven applications, automation tools, and practical web backends. I like understanding how systems work behind the scenes rather than just building interfaces.
-      Currently, I’m learning DevOps concepts like containerization, deployment, and cloud workflows so I can take applications from development to production.</p>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container">
-      <h2>Skills</h2>
-      <h4>Languages</h4>
-      <ul class="skills-list">
-        <li>Python</li>
-        <li>SQL</li>
-        <li>HTML/CSS</li>
-      </ul>
-      <h4>Backend</h4>
-      <ul class="skills-list">
-        <li>Flask</li>
-        <li>REST APIs</li>
-        <li>Authentication</li>
-        <li>Database design</li>
-      </ul>
-      <h4>Databases</h4>
-      <ul class="skills-list">
-        <li>PostgreSQL</li>
-        <li>SQLite</li>
-        <li>Firebase</li>
-      </ul>
-      <h4>Tools & DevOps</h4>
-      <ul class="skills-list">
-        <li>Git & GitHub</li>
-        <li>Deployment(Render,Vercel)</li>
-        <li>Docker(learning)</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container">
-      <h2>Projects</h2>
-
-      <div class="project">
-        <div class="project-info">
-          <h3>RIT GrubPoint</h3>
-          <p>A Flutter + Firebase food ordering app for RIT students. It supports authentication, wallet, table reservations, and order tracking.</p>
-        </div>
-        <img src="images\GrubPoint.jpg" class="project-img" alt="RIT GrubPoint">
-      </div>
-
-      <div class="project">
-        <div class="project-info">
-          <h3>UniQScan</h3>
-          <p>A React Native + Flask paperless OD and permission management system where students submit requests, staff approve them, and verification is done via QR code scanning on student IDs.</p>
-        </div>
-        <img src="images/UniQScan.png" class="project-img" alt="UniQScan">
-      </div>
-
-      <div class="project">
-        <div class="project-info">
-          <h3>Edumate</h3>
-          <p>A Flutter-based multilingual educational chatbot platform that helps college students get instant answers to academic and campus-related queries.</p>
-        </div>
-        <img src="images/Edumate.png" class="project-img" alt="Edumate">
-      </div>
-
-      <div class="project">
-        <div class="project-info">
-          <h3>Flask Resume Builder</h3>
-          <p>A Python Flask web app that allows users to easily create and download professional resumes.</p>
-        </div>
-        <img src="images/Flask Resume Builder.png" class="project-img" alt="Flask Resume Builder">
-      </div>
-
-      <div class="project">
-        <div class="project-info">
-          <h3>Flask-Notes-App</h3>
-          <p>A simple HTML + Flask web application for creating, editing, and managing personal notes.</p>
-        </div>
-        <img src="images/Flask-Notes-App.png" class="project-img" alt="Flask-Notes-App">
-      </div>
-
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <h2>Contact Me</h2>
-      <div class="contact-box">
-        <p>📧 <a href="mailto:jdnk5607@gmail.com">jdnk5607@gmail.com</a></p>
-        <p>🌐 <a href="https://github.com/Jxck-007" target="_blank" rel="noopener noreferrer">GitHub</a></p>
-        <p>💼 <a href="https://www.linkedin.com/in/jegadeesh-nandakumar/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Jegadeesh (Jack) Nandakumar 
-      Code | Automate | Deploy | Repeat
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><div class="status-dot"></div>Available for projects</div>
+    <h1 class="hero-name"><span class="hi">Hi, I'm </span><span class="accent">Jack</span></h1>
+    <p class="hero-role">&gt;_ Backend Developer &middot; Flask &middot; Databases &middot; APIs</p>
+    <p class="hero-bio">
+      Passionate about backend systems and APIs. I build things that work behind the scenes —
+      from Flask-powered REST APIs to database-driven apps and mobile experiences.
+      Currently exploring DevOps and cloud deployment workflows.
     </p>
-  </footer>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View My Work &rarr;</a>
+      <a href="#github" class="btn btn-outline">GitHub Stats</a>
+      <a href="mailto:jdnk5607@gmail.com" class="btn btn-ghost">&#9993; Hire Me</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <p class="section-label">// 001 &mdash; About</p>
+  <h2 class="section-title">My Journey</h2>
+  <p class="section-sub">A CS student building real systems, one backend at a time.</p>
+  <p class="about-bio reveal">
+    I'm Jegadeesh Nandakumar (Jack) &mdash; a Computer Science Engineering student with a strong interest in backend development.
+    I enjoy building systems that handle data, authentication, and APIs using Python and Flask.
+    Most of my work focuses on database-driven applications, automation tools, and practical web backends.
+    I like understanding how systems work behind the scenes rather than just building interfaces.
+    Currently learning DevOps &mdash; containerization, deployment, and cloud workflows &mdash; to take apps from development to production.
+  </p>
+  <div class="stat-row">
+    <div class="stat-card reveal"><div class="stat-num">5</div><div class="stat-lbl">Projects</div></div>
+    <div class="stat-card reveal"><div class="stat-num" id="stat-repos">--</div><div class="stat-lbl">GitHub Repos</div></div>
+    <div class="stat-card reveal"><div class="stat-num" id="stat-lc">--</div><div class="stat-lbl">Problems Solved</div></div>
+    <div class="stat-card reveal"><div class="stat-num" id="stat-stars">--</div><div class="stat-lbl">GitHub Stars</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- GITHUB -->
+<div class="section-wrap" id="github">
+  <p class="section-label">// 002 &mdash; GitHub</p>
+  <h2 class="section-title">Contributions &amp; Stats</h2>
+  <p class="section-sub">Live data from <a href="https://github.com/Jxck007" target="_blank" style="color:var(--accent2);text-decoration:none">@Jxck007</a></p>
+
+  <div class="gh-top">
+    <div class="gh-card reveal"><div class="gh-num" id="gh-repos">--</div><div class="gh-lbl">Public Repos</div></div>
+    <div class="gh-card reveal"><div class="gh-num" id="gh-followers">--</div><div class="gh-lbl">Followers</div></div>
+    <div class="gh-card reveal"><div class="gh-num" id="gh-following">--</div><div class="gh-lbl">Following</div></div>
+  </div>
+
+  <div class="gh-bottom">
+    <div class="panel reveal">
+      <div class="panel-title"># Top Languages</div>
+      <div id="lang-bars"><div class="loading">Fetching<span class="dots"></span></div></div>
+    </div>
+    <div class="panel reveal">
+      <div class="panel-title"># Contribution Graph</div>
+      <img src="https://ghchart.rshah.org/7c6af7/Jxck007" alt="Contribution chart"
+        style="width:100%;border-radius:8px;filter:hue-rotate(220deg) brightness(.9) saturate(1.2)"
+        onerror="this.parentElement.innerHTML='<p class=loading style=font-size:.8rem>View at github.com/Jxck007</p>'"/>
+      <div style="margin-top:1rem">
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=Jxck007&theme=dark&background=18182a&ring=7c6af7&fire=f06292&currStreakLabel=4fc3f7&hide_border=true"
+          alt="Streak stats" style="width:100%;border-radius:8px"
+          onerror="this.style.display='none'"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- LEETCODE -->
+<div class="section-wrap" id="leetcode">
+  <p class="section-label">// 003 &mdash; LeetCode</p>
+  <h2 class="section-title">Problem Solving</h2>
+  <p class="section-sub">Grinding at <a href="https://leetcode.com/u/jxck007" target="_blank" style="color:var(--accent2);text-decoration:none">jxck007</a></p>
+
+  <div class="lc-top">
+    <div class="lc-card lc-easy reveal"><div class="lc-icon">&#128994;</div><div class="lc-num" id="lc-easy">--</div><div class="lc-lbl">Easy</div></div>
+    <div class="lc-card lc-med  reveal"><div class="lc-icon">&#128993;</div><div class="lc-num" id="lc-med">--</div><div class="lc-lbl">Medium</div></div>
+    <div class="lc-card lc-hard reveal"><div class="lc-icon">&#128308;</div><div class="lc-num" id="lc-hard">--</div><div class="lc-lbl">Hard</div></div>
+    <div class="lc-card lc-all  reveal"><div class="lc-icon">&#128202;</div><div class="lc-num" id="lc-total">--</div><div class="lc-lbl">Total Solved</div></div>
+  </div>
+
+  <div class="lc-badges">
+    <div class="panel reveal" style="text-align:center">
+      <div class="panel-title"># LeetCode Stats Card</div>
+      <img src="https://leetcard.jacoblin.cool/jxck007?theme=dark&font=JetBrains+Mono&ext=heatmap&border=0&radius=8"
+        alt="LeetCode Stats" style="width:100%;border-radius:8px;margin-top:.5rem"
+        onerror="this.style.display='none'"/>
+    </div>
+    <div class="panel reveal" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem">
+      <div class="panel-title" style="width:100%"># Difficulty Rings</div>
+      <div style="display:flex;gap:2rem;align-items:center;justify-content:center;flex-wrap:wrap" id="rings-wrap">
+        <div class="loading">Loading<span class="dots"></span></div>
+      </div>
+      <a href="https://leetcode.com/u/jxck007" target="_blank" class="btn btn-outline" style="margin-top:.5rem">View Full Profile &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <p class="section-label">// 004 &mdash; Skills</p>
+  <h2 class="section-title">My Expertise</h2>
+  <p class="section-sub">Technologies and tools I work with.</p>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="sg-title">Languages</div>
+      <div class="tag-wrap">
+        <span class="tag">Python</span><span class="tag">SQL</span>
+        <span class="tag">Dart</span><span class="tag">HTML / CSS</span><span class="tag">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="sg-title">Backend &amp; APIs</div>
+      <div class="tag-wrap">
+        <span class="tag">Flask</span><span class="tag">REST APIs</span>
+        <span class="tag">JWT Auth</span><span class="tag">Database Design</span><span class="tag">SQLAlchemy</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="sg-title">Databases</div>
+      <div class="tag-wrap">
+        <span class="tag">PostgreSQL</span><span class="tag">SQLite</span><span class="tag">Firebase</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="sg-title">Tools &amp; Mobile</div>
+      <div class="tag-wrap">
+        <span class="tag">Flutter</span><span class="tag">React Native</span>
+        <span class="tag">Git &amp; GitHub</span><span class="tag">Docker (learning)</span>
+        <span class="tag">Render</span><span class="tag">Vercel</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <p class="section-label">// 005 &mdash; Projects</p>
+  <h2 class="section-title">Featured Work</h2>
+  <p class="section-sub">Some of the things I've built.</p>
+
+  <div class="proj-grid">
+
+    <div class="proj-card reveal">
+      <div class="proj-thumb">
+        <img src="images/UniQScan.png" alt="UniQScan"
+          onerror="this.parentElement.innerHTML='<div class=proj-thumb-fallback>&#128241;</div>'">
+      </div>
+      <div class="proj-body">
+        <div class="proj-name">UniQScan</div>
+        <div class="proj-desc">Paperless OD &amp; permission management system. Students submit requests, staff approve, and verification happens via QR code scanning on student IDs. My BE capstone project.</div>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="proj-tag">React Native</span><span class="proj-tag">Flask</span>
+            <span class="proj-tag">PostgreSQL</span><span class="proj-tag">QR Code</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/Jxck007/UniQScan" target="_blank" class="btn btn-ghost">&#9095; Repo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-thumb">
+        <img src="images/GrubPoint.jpg" alt="RIT GrubPoint"
+          onerror="this.parentElement.innerHTML='<div class=proj-thumb-fallback>&#127828;</div>'">
+      </div>
+      <div class="proj-body">
+        <div class="proj-name">RIT GrubPoint</div>
+        <div class="proj-desc">Flutter + Firebase food ordering app for RIT students. Supports authentication, wallet system, table reservations, and real-time order tracking.</div>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="proj-tag">Flutter</span><span class="proj-tag">Firebase</span><span class="proj-tag">Dart</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/Jxck007/RIT-GrubPoint" target="_blank" class="btn btn-ghost">&#9095; Repo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-thumb">
+        <img src="images/Edumate.png" alt="Edumate"
+          onerror="this.parentElement.innerHTML='<div class=proj-thumb-fallback>&#129302;</div>'">
+      </div>
+      <div class="proj-body">
+        <div class="proj-name">Edumate</div>
+        <div class="proj-desc">Flutter-based multilingual educational chatbot platform helping college students get instant answers to academic and campus-related queries.</div>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="proj-tag">Flutter</span><span class="proj-tag">NLP</span><span class="proj-tag">Multilingual</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/Jxck007/Edumate" target="_blank" class="btn btn-ghost">&#9095; Repo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-thumb">
+        <img src="images/Flask Resume Builder.png" alt="Flask Resume Builder"
+          onerror="this.parentElement.innerHTML='<div class=proj-thumb-fallback>&#128196;</div>'">
+      </div>
+      <div class="proj-body">
+        <div class="proj-name">Flask Resume Builder</div>
+        <div class="proj-desc">Python Flask web app that lets users create and download professional resumes in a clean, structured format with live preview.</div>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="proj-tag">Flask</span><span class="proj-tag">Python</span><span class="proj-tag">HTML/CSS</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/Jxck007/flask-resume-builder" target="_blank" class="btn btn-ghost">&#9095; Repo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card wide reveal">
+      <div class="proj-thumb">
+        <img src="images/Flask-Notes-App.png" alt="Flask Notes App"
+          onerror="this.parentElement.innerHTML='<div class=proj-thumb-fallback style=height:100%>&#128221;</div>'">
+      </div>
+      <div class="proj-body">
+        <div class="proj-name">Flask Notes App</div>
+        <div class="proj-desc">Simple but solid HTML + Flask web application for creating, editing, and managing personal notes. Clean CRUD interface with a focus on usability. A great example of minimal full-stack Flask development.</div>
+        <div class="proj-footer">
+          <div class="proj-tags">
+            <span class="proj-tag">Flask</span><span class="proj-tag">Python</span>
+            <span class="proj-tag">SQLite</span><span class="proj-tag">Jinja2</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/Jxck007/Flask-Notes-App" target="_blank" class="btn btn-ghost">&#9095; Repo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- UPDATES -->
+<div class="section-wrap" id="updates">
+  <p class="section-label">// 006 &mdash; Updates</p>
+  <h2 class="section-title">Life &amp; Tech Updates</h2>
+  <p class="section-sub">Latest from my journey.</p>
+  <div class="updates-list">
+    <div class="update-item reveal">
+      <div class="upd-dot"></div>
+      <div>
+        <div class="upd-date">2025 &mdash; Capstone Project</div>
+        <div class="upd-text">Building <strong>UniQScan</strong> as my BE final year project &mdash; a full-stack OD management system with QR verification, React Native frontend, and Flask + PostgreSQL backend.</div>
+      </div>
+    </div>
+    <div class="update-item reveal">
+      <div class="upd-dot"></div>
+      <div>
+        <div class="upd-date">2025 &mdash; DevOps Learning</div>
+        <div class="upd-text">Diving into <strong>Docker &amp; DevOps</strong> &mdash; learning containerization, Render deployments, and cloud-native workflows to take backend apps from dev to production.</div>
+      </div>
+    </div>
+    <div class="update-item reveal">
+      <div class="upd-dot"></div>
+      <div>
+        <div class="upd-date">2024 &mdash; App Launch</div>
+        <div class="upd-text">Launched <strong>RIT GrubPoint</strong> &mdash; a Flutter + Firebase food ordering platform for RIT students with wallet system and real-time order tracking.</div>
+      </div>
+    </div>
+    <div class="update-item reveal">
+      <div class="upd-dot"></div>
+      <div>
+        <div class="upd-date">2024 &mdash; Problem Solving</div>
+        <div class="upd-text">Actively grinding <strong>LeetCode</strong>, focusing on data structures and algorithms to sharpen problem-solving skills for interviews and competitive programming.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<div class="section-wrap" id="contact">
+  <p class="section-label">// 007 &mdash; Contact</p>
+  <h2 class="section-title">Let's Connect</h2>
+  <div class="contact-box reveal">
+    <div class="contact-name">Jegadeesh (Jack) Nandakumar</div>
+    <div class="contact-tagline">Code | Automate | Deploy | Repeat</div>
+    <div class="contact-links">
+      <a href="mailto:jdnk5607@gmail.com" class="contact-link">&#9993; jdnk5607@gmail.com</a>
+      <a href="https://github.com/Jxck007" target="_blank" class="contact-link">&#9095; GitHub</a>
+      <a href="https://www.linkedin.com/in/jegadeesh-nandakumar/" target="_blank" class="contact-link">&#9670; LinkedIn</a>
+      <a href="https://leetcode.com/u/jxck007" target="_blank" class="contact-link">&#8984; LeetCode</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Jegadeesh (Jack) Nandakumar &nbsp;&middot;&nbsp; Built with &#9749; and Python
+</footer>
+
+<script>
+/* Scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function set(id, val) { const el = document.getElementById(id); if(el) el.textContent = val; }
+
+/* GitHub */
+async function loadGitHub() {
+  try {
+    const res  = await fetch('https://api.github.com/users/Jxck007');
+    const data = await res.json();
+    set('gh-repos',    data.public_repos ?? '--');
+    set('gh-followers',data.followers    ?? '--');
+    set('gh-following',data.following    ?? '--');
+    set('stat-repos',  data.public_repos ?? '--');
+
+    const rRes  = await fetch('https://api.github.com/users/Jxck007/repos?per_page=100');
+    const repos = await rRes.json();
+    if (!Array.isArray(repos)) return;
+
+    const stars = repos.reduce((s,r) => s+(r.stargazers_count||0), 0);
+    set('stat-stars', stars);
+
+    const lc = {};
+    repos.forEach(r => { if(r.language) lc[r.language] = (lc[r.language]||0)+1; });
+    const sorted = Object.entries(lc).sort((a,b)=>b[1]-a[1]).slice(0,6);
+    const max   = sorted[0]?.[1]||1;
+    const total = sorted.reduce((s,[,n])=>s+n, 0);
+    const cols  = ['#7c6af7','#4fc3f7','#4ade80','#fbbf24','#f06292','#fb923c'];
+
+    document.getElementById('lang-bars').innerHTML = sorted.map(([lang,count],i) => {
+      const pct = Math.round((count/total)*100);
+      const w   = Math.round((count/max)*100);
+      return `<div class="lang-row">
+        <span class="lang-name" style="color:${cols[i]}">${lang}</span>
+        <div class="lang-track"><div class="lang-fill" style="width:0%;background:${cols[i]}" data-w="${w}"></div></div>
+        <span class="lang-pct">${pct}%</span>
+      </div>`;
+    }).join('');
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.lang-fill').forEach(el => { el.style.width = el.dataset.w + '%'; });
+    });
+  } catch(e) { console.warn('GitHub error', e); }
+}
+
+/* LeetCode */
+async function loadLeetCode() {
+  try {
+    const res  = await fetch('https://alfa-leetcode-api.onrender.com/jxck007/solved');
+    if (!res.ok) throw new Error('bad');
+    const data = await res.json();
+    const easy  = data.easySolved   ?? data.easy   ?? 0;
+    const med   = data.mediumSolved ?? data.medium  ?? 0;
+    const hard  = data.hardSolved   ?? data.hard   ?? 0;
+    const total = data.solvedProblem ?? (easy+med+hard);
+
+    set('lc-easy', easy); set('lc-med', med);
+    set('lc-hard', hard); set('lc-total', total);
+    set('stat-lc', total);
+
+    if (total > 0) {
+      const rings = [
+        { label:'Easy',   count:easy, color:'#4ade80', cap:800  },
+        { label:'Medium', count:med,  color:'#fbbf24', cap:1600 },
+        { label:'Hard',   count:hard, color:'#f87171', cap:700  },
+      ];
+      document.getElementById('rings-wrap').innerHTML = rings.map(it => {
+        const r = 38, circ = 2*Math.PI*r;
+        const off = circ - Math.min(it.count/it.cap, 1)*circ;
+        return `<div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <circle cx="45" cy="45" r="${r}" fill="none" stroke="#28283c" stroke-width="6"/>
+            <circle cx="45" cy="45" r="${r}" fill="none" stroke="${it.color}" stroke-width="6"
+              stroke-linecap="round" stroke-dasharray="${circ}" stroke-dashoffset="${circ}"
+              style="transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset 1.3s ease"
+              data-off="${off}"/>
+            <text x="45" y="50" text-anchor="middle" fill="${it.color}"
+              font-family="JetBrains Mono" font-size="14" font-weight="700">${it.count}</text>
+          </svg>
+          <div class="ring-label">${it.label}</div>
+        </div>`;
+      }).join('');
+
+      requestAnimationFrame(() => {
+        document.querySelectorAll('#rings-wrap circle[data-off]').forEach(c => {
+          c.style.strokeDashoffset = c.dataset.off;
+        });
+      });
+    }
+  } catch(e) {
+    console.warn('LeetCode error', e);
+    ['lc-easy','lc-med','lc-hard','lc-total','stat-lc'].forEach(id => set(id, '—'));
+    document.getElementById('rings-wrap').innerHTML =
+      `<p class="loading" style="font-size:.8rem">View at <a href="https://leetcode.com/u/jxck007" style="color:var(--accent2)">leetcode.com/u/jxck007</a></p>`;
+  }
+}
+
+loadGitHub();
+loadLeetCode();
+</script>
 </body>
 </html>
